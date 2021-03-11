@@ -2,9 +2,11 @@ const express = require('express');
 require('./config/db')
 const userRouter = require('./routers/user')
 const app = express();
-const PORT = process.env.port || 9000
-app.use(userRouter)
+const PORT = process.env.PORT || 9000
 const cors = require('cors')
-
 app.use(cors())
-app.listen(()=> console.log(`Server running on port ${PORT}`))
+app.use(express.json())
+app.use(userRouter)
+
+
+app.listen(PORT,()=> console.log(`Server running on port ${PORT}`))
